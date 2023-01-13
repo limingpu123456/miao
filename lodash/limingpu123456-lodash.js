@@ -1,4 +1,15 @@
 var limingpu123456 = {
+  //判断是否为null
+  isNull: function (value) {
+    return value === null
+  },
+  isNaN: function (value) {
+    if (typeof (value) == 'object') {
+      if (value === undefined) return false
+      value = Number(String(value))
+    }
+    return value !== value ? true : false
+  },
   chunk: function (ary, val) {
     var result = []
     var j = 0

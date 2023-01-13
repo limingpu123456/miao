@@ -46,7 +46,7 @@ var limingpu123456 = {
   },
   //将vaules里面包含的值 从array里面排除出去，并返回新数组
   difference: function (array, ...values) {
-    const map = this.concat([], ...values)
+    const map = [].concat(...values)
     values.forEach(value => {
       if (!Array.isArray(value)) {
         throw new TypeError("argument should be an array");
@@ -57,8 +57,8 @@ var limingpu123456 = {
       if (!map.includes(a)) {
         res.push(a)
       }
-      return res
     }
+    return res
   },
   drop: function (ary, n = 1) {
     const len = ary.length

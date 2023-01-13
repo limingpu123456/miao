@@ -44,4 +44,46 @@ var limingpu123456 = {
     //调用内置api也可以实现
     //return args.reduce((mappedArr, cur) => mappedArr.concat(cur), arr.slice());
   },
+  //将vaules里面包含的值 从array里面排除出去，并返回新数组
+  difference: function (array, ...values) {
+    const map = this.concat([], ...values)
+    values.forEach(value => {
+      if (!Array.isArray(value)) {
+        throw new TypeError("argument should be an array");
+      }
+    })
+    const res = []
+    for (let a of array) {
+      if (!map.includes(a)) {
+        res.push(a)
+      }
+      return res
+    }
+  },
+  drop: function (ary, n = 1) {
+    const len = ary.length
+    if (len == 0 || n <= 0) return ary.slice()
+    const res = []
+    for (let i = n; i < len; i++) {
+      res.push(ary[i])
+    }
+    return res
+  },
+  //从数组尾部切下N长度，并返回剩余切片
+  dropRight: function (ary, n = 1) {
+    const len = ary.length
+    if (len == 0 || n <= 0) return ary.slice()
+    const res = []
+    for (let i = 0; i < len - n; i++) {
+      res.push(ary[i])
+    }
+    return res
+  },
+  //使用value值来填充array，从start开始到end，返回原数组
+  fill: function (ary, value, start = 0, end = ary.length) {
+    for (let i = start; i < end; i++) {
+      ary[i] = value
+    }
+    return ary
+  }
 }

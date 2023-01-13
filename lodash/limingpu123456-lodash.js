@@ -5,8 +5,9 @@ var limingpu123456 = {
   },
   //判断是否为NaN
   isNaN: function (value) {
-    if (value === undefined) return false
+
     if (typeof (value) == 'object') {
+      if (value.length > 1) return false
       value = Number(String(value))
     }
     return value !== value ? true : false

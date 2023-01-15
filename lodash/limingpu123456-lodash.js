@@ -135,13 +135,13 @@ var limingpu123456 = {
     return res
   },
   //把数组以separator连接成字符串并返回
-  join: function (ary, separator = ",") {
+  join: function (ary, separator = "") {
     let res = ""
     separator = String(separator)
     for (var i = 0; i < ary.length - 1; i++) {
       res = res + ary[i] + separator
     }
-    res = res + arr[arr.length - 1]
+    res = res + ary[ary.length - 1]
     return res
   },
   //返回数组的最后一位
@@ -153,7 +153,7 @@ var limingpu123456 = {
     return res
   },
   //获取数组中从fromIndex开始，往左遍历，第一次出现值时所在的索引，如果发fromINdex为负数，则表示结尾往开始偏移
-  lastIndexOf: function (ary, value, fromIndex = length - 1) {
+  lastIndexOf: function (ary, value, fromIndex = ary.length - 1) {
     if (fromIndex < 0) {
       return -1
     }

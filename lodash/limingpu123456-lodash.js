@@ -85,5 +85,98 @@ var limingpu123456 = {
       ary[i] = value
     }
     return ary
-  }
+  },
+  //获取数组第一位
+  head: function (ary) {
+    return ary.length ? ary[0] : undefined
+  },
+  //减少一级的array数组的嵌套等级
+  flatten: function (ary) {
+    var res = []
+    for (var i = 0; i < ary.length; i++) {
+      if (Array.isArray(ary[i])) {
+        res.push(...ary[i])
+      } else {
+        res.push(ary[i])
+      }
+    }
+    return res
+  },
+  //获取数组中从fromIndex开始，第一次出现值得索引，如果fromIndex为负数，则从0开始
+  indexOf: function (ary, value, fromIndex = 0) {
+    if (fromIndex < 0) {
+      fromIndex = 0
+    }
+    for (var i = fromIndex; i < ary.length; i++) {
+      if (ary[i] == value) {
+        return i
+      }
+    }
+    return -1
+  },
+  //返回除最后一位的数组切片
+  initial: function (ary) {
+    const res = []
+    for (var i = 0; i < ary.length - 1; i++) {
+      res.push(ary[i])
+    }
+    return res
+  },
+  //找出输入得所有数组的交集
+  intersection: function (array, ...arys) {
+    let res = []
+    for (var a of arys) {
+      for (var b of a) {
+        if (array.includes(b)) {
+          res.push(b)
+        }
+      }
+    }
+    return res
+  },
+  //把数组以separator连接成字符串并返回
+  join: function (ary, separator = ",") {
+    let res = ""
+    separator = String(separator)
+    for (var i = 0; i < ary.length - 1; i++) {
+      res = res + ary[i] + separator
+    }
+    res = res + arr[arr.length - 1]
+    return res
+  },
+  //返回数组的最后一位
+  last: function (ary) {
+    let res = 0
+    if (ary.length) {
+      res = ary[ary.length - 1]
+    }
+    return res
+  },
+  //获取数组中从fromIndex开始，往左遍历，第一次出现值时所在的索引，如果发fromINdex为负数，则表示结尾往开始偏移
+  lastIndexOf: function (ary, value, fromIndex = length - 1) {
+    if (fromIndex < 0) {
+      return -1
+    }
+    for (var i = fromIndex; i >= 0; i--) {
+      if (ary[i] == value) {
+        return i
+      }
+    }
+  },
+  //返回数组第N位，如果n<0则从结尾开始往左第N位
+  nth: function (ary, n = 0) {
+    let len = ary.length
+    if (n < 0) n += len
+    return ary[n]
+  },
+  //移除数组中的value的值，并返回修改后的数组
+  pull: function (ary, ...values) {
+    let res = []
+    ary.forEach(it => {
+      if (!values.includes(it)) {
+        res.push(it)
+      }
+    })
+    return res
+  },
 }

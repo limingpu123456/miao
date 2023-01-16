@@ -179,4 +179,66 @@ var limingpu123456 = {
     })
     return res
   },
+  //移除数组中的values值，并返回修改后的数组
+  pullAll: function (ary, value) {
+    let result = []
+    for (var a of ary) {
+      if (!value.includes(a)) {
+        result.push(a)
+      }
+    }
+    return result
+  },
+  //根据索引，移除数组中对应的值，并返回被移除数组组成的新数组
+  pullAt: function (ary, indexed) {
+    let result = []
+    indexed.forEach(it => {
+      result.push(ary[it])
+    })
+    return result
+  },
+  //反转数组，会修改原数组
+  reverse: function (ary) {
+    let low = 0
+    let high = ary.length - 1
+    while (low < high) {
+      let t = ary[low]
+      ary[low] = ary[high]
+      ary[high] = t
+      low++
+      high--
+    }
+    return ary
+  },
+  //通过二分法，将value插入已排序的数组中，并返回其最小索引
+  sortedIndex: function (ary, value) {
+    let l = 0
+    let r = ary.length - 1
+    while (l < r) {
+      let mid = l + r >> 1
+      if (ary[mid] >= value) {
+        r = mid
+      } else {
+        l = mid + 1
+      }
+    }
+    return l
+  },
+  //用二分法找到value在array的最小索引，如没有返回-1
+  sortedIndexOf: function (ary, val) {
+    let first = 0
+    let last = ary.length - 1
+    while (first < last) {
+      let mid = Math.floor((first + last) / 2)
+      if (ary[mid] < val) {
+        first = mid + 1
+      } else {
+        last = mid - 1
+      }
+    }
+    if (ary[first] == val) {
+      return first
+    }
+    return -1
+  }
 }

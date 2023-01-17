@@ -240,5 +240,60 @@ var limingpu123456 = {
       return first
     }
     return -1
+  },
+  //用二分法，找到已排序的数组中可插入value的最大索引，并返回
+  sortedLastIndex: function (ary, val) {
+    let l = 0
+    let r = ary.length
+    while (l < r) {
+      var m = l + r >> 1
+      if (ary[mid] > val) {
+        r = m
+      } else {
+        l = m + 1
+      }
+    }
+    return l
+  },
+  //用二分法，找到在已排序的数组中查找value的最大索引，并返回，若无，返回-1
+  sortedLastIndexOf: function (ary, val) {
+    let l = 0
+    let r = ary.length
+    while (l < r) {
+      var m = l + r >> 1
+      if (ary[mid] > val) {
+        r = m
+      } else {
+        l = m + 1
+      }
+    }
+    if (l > 0 && ary[l - 1] == val) {
+      return l - 1
+    }
+    return -1
+  },
+  //遍历原数组，重复的返回1个，返回没有重复值的新数组
+  sortedUniq: function (ary) {
+    let res = []
+    for (let a of ary) {
+      if (!res.includes(a)) {
+        res.push(a)
+      }
+    }
+    return res
+  },
+  //返回数组除第一位外全部元素，切片
+  tail: function (ary) {
+    ary.shift()
+    return ary
+  },
+  //返回数组从0位开始的N个元素
+  take: function (ary, n = 1) {
+    let res = []
+    if (n == 0) return res
+    for (let i = 0, l = ary.length, end = Math.min(l, n); i < end; i++) {
+      res.push(ary[i])
+    }
+    return res
   }
 }

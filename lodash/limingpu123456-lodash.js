@@ -247,7 +247,7 @@ var limingpu123456 = {
     let r = ary.length
     while (l < r) {
       var m = l + r >> 1
-      if (ary[mid] > val) {
+      if (ary[m] > val) {
         r = m
       } else {
         l = m + 1
@@ -261,7 +261,7 @@ var limingpu123456 = {
     let r = ary.length
     while (l < r) {
       var m = l + r >> 1
-      if (ary[mid] > val) {
+      if (ary[m] > val) {
         r = m
       } else {
         l = m + 1

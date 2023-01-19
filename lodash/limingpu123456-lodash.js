@@ -295,5 +295,34 @@ var limingpu123456 = {
       res.push(ary[i])
     }
     return res
+  },
+  //从尾部开始提取元素的个数
+  takeRight: function (ary, n = 1) {
+    var res = []
+    if (ary.length <= n) {
+      return ary
+    }
+    for (let i = ary.length - n; i < ary.length; i++) {
+      res.push(ary[i])
+    }
+    return res
+  },
+  //给所有输入的数组做比较，去除与之前数组的相同的值，并按顺序返回唯一值的数组
+  union: function (...arys) {
+    //注意res.concat(val)这个外面不能加大括号，如果加了大括号就得写return，如果不加{}会自动写一个return
+    //...可以将set值转换为数组；或者通过Array.from(set)迭代对象返回新数组
+    return Array.from(new Set(arys.reduce((res, val) => { res.concat(val) }, [])))
+  },
+  //返回新的去重后的数组，保留第一次出现的值
+  uniq: function (ary) {
+
+  },
+  //过滤掉数组array中所有value的值，返回过滤后的新数组
+  without: function (ary, ...values) {
+
+  },
+  //返回去除给定数组交集的新数组，顺序取决于他们数组的出现顺序
+  xor: function (...arys) {
+
   }
 }

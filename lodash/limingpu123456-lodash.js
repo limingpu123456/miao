@@ -311,18 +311,42 @@ var limingpu123456 = {
   union: function (...arys) {
     //注意res.concat(val)这个外面不能加大括号，如果加了大括号就得写return，如果不加{}会自动写一个return
     //...可以将set值转换为数组；或者通过Array.from(set)迭代对象返回新数组
-    return Array.from(new Set(arys.reduce((res, val) => { res.concat(val) }, [])))
+    return Array.from(new Set(arys.reduce((res, val) => res.concat(val), [])))
   },
   //返回新的去重后的数组，保留第一次出现的值
   uniq: function (ary) {
-
+    return Array.from(new Set(ary))
   },
   //过滤掉数组array中所有value的值，返回过滤后的新数组
   without: function (ary, ...values) {
-
+    const res = []
+    for (let i of ary) {
+      if (!values.includes(i)) {
+        res.push(i)
+      }
+    }
+    return res
   },
   //返回去除给定数组交集的新数组，顺序取决于他们数组的出现顺序
   xor: function (...arys) {
+    let res = []
+    let map = {}
 
-  }
+    arys.forEach(item => {
+      item.forEach(it => {
+        if (it in map) {
+          map[it] += 1
+        } else {
+          map[it] = 1
+        }
+      })
+    })
+
+    for (var i in map) {
+      if (map[i] == 1) {
+        res.push(Number(i))
+      }
+      return res
+    }
+  },
 }

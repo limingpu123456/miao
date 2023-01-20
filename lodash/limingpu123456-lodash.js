@@ -346,7 +346,7 @@ var limingpu123456 = {
       if (map[i] == 1) {
         res.push(Number(i))
       }
-      return res
     }
+    return res
   },
 }

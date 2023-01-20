@@ -349,4 +349,74 @@ var limingpu123456 = {
     }
     return res
   },
+  //创建一个分组元素的数组，数组的第一个元素包含所有给定数组的第一个元素，数组的第二个元素包含所有给定数组的第二个元素，一次类推；多个一维数组变成一个二维数组
+  zip: function (...arys) {
+    const len = arys.length
+    if (!len) return []
+    const maxlen = Math.max(...(arys.map(it => it.length)))
+    const res = new Array(maxlen).fill(0).map(it => [it])
+    for (let i = 0; i < maxlen; i++) {
+      for (let j = 0; j < len; j++) {
+        res[i][j] = arys[j][i]
+      }
+    }
+    return res
+  },
+  //第一个数组中的值作为属性名，第二个数组中的值作为相应的属性值
+  zipObject: function (props = [], values = []) {
+    let res = {}
+    for (let i = 0; i < props.length; i++) {
+      res[props[i]] = values[i]
+    }
+    return res
+  },
+  //拆分数组，和zip的方法相反,二维数组拆分成一维数组
+  unzip: function (ary) {
+    let len = ary.length
+    let maxlen = Math.max(...(ary.map(it => it.length)))
+    let res = []
+    for (let i = 0; i < maxlen; i++) {
+      let array = []
+      for (let j = 0; j < len; j++) {
+        array.push(ary[j][i])
+      }
+      res.push(array)
+    }
+    return res
+  },
+  //检索value是否存在于集合collection中
+  includes: function (collection, value, fromIndex = 0) {
+    if (typeof collection == 'string') {
+      let n = value.length
+      for (let i = 0; i < collection.length - n; i++) {
+        var x = ''
+        for (let j = i; j <= i + n - 1; j++) {
+          x += value[j]
+        }
+        if (x == value) return true
+      }
+      return false
+    }
+    if (typeof collection == 'object') {
+      for (var key in collection) {
+        if (collection[key] == value) {
+          return true
+        }
+        return false
+      }
+      if (Array.isArray(collection)) {
+        for (let i = fromIndex; i < collection.length; i++) {
+          if (collection[i] == value) {
+            return true
+          }
+          return false
+        }
+      }
+    }
+  },
+  //取出集合中的一个随机元素
+  sample: function (collection) {
+    return collection[Math.random() * (collection.length) | 0]
+  }
+
 }
